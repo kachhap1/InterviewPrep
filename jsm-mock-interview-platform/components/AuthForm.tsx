@@ -40,30 +40,20 @@ const AuthForm = () => {
       <div className="flex flex-col gap card py-14 px-10">
         <div className="flex flex-row gap-2 justify center">
           <Image src="/logo.svg" alt="logo" width={38} height={32} />
+          <h2 className="text-primary-100">Prepwise</h2>
         </div>
-      </div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder="your username" {...field} />
-                </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <h3>Practice job interview with AI</h3>
 
-          <Button type="submit">Submit</Button>
-        </form>
-      </Form>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full space-y-6 mt-4 form"
+          >
+            <p>Name</p>
+            <Button type="submit">Submit</Button>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 };
