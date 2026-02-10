@@ -23,7 +23,7 @@ const formSchema = z.object({
   }),
 });
 
-const AuthForm = () => {
+const AuthForm = ({ type }: { type: FormType }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,6 +34,8 @@ const AuthForm = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
+
+  const isSign = type === "sign-in";
 
   return (
     <div className="card-border lg:min-w-[566px]">
@@ -49,10 +51,22 @@ const AuthForm = () => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-6 mt-4 form"
           >
-            <p>Name</p>
-            <Button type="submit">Submit</Button>
+            {!isSignIn && <p>Name</p>}
+            <p>Email</p>
+            <p>Password</p>
+            <Button className="btn" type="submit">
+              {isSign ? "Sign in" : "Creae an Account"}
+            </Button>
           </form>
         </Form>
+
+        <p className="text-center">
+          {isSign ? "No account yet?" : "Have an account already?"}
+          <Link
+            href={!isSign ? "/sign-in" : "/sign-up"}
+            className="font-bold text-user-primary ml-1">{!isSign} ? "Sign in" : "Sign-up"</Link>
+          />
+        </p>
       </div>
     </div>
   );
